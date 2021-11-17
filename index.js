@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 require('dotenv').config()
 
 app.use(express.json())
-
-const Note = require('./models/Note')
+app.use(cors())
+app.options('*', cors())
 
 mongoose.connect(process.env.MONGODB_URI, (err) => {
   if(err) throw err
